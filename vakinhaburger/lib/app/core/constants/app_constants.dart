@@ -1,0 +1,2 @@
+// Routes names
+const routeSplashScreen = "/";
