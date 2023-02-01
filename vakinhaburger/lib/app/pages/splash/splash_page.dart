@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:vakinhaburger/app/core/config/env/env.dart';
+import 'package:vakinhaburger/app/core/constants/app_constants.dart';
+import 'package:vakinhaburger/app/core/ui/helpers/size_extensions.dart';
+import 'package:vakinhaburger/app/core/ui/styles/colors_app.dart';
 import 'package:vakinhaburger/app/core/ui/widgets/delivery_button.dart';
 
 class SplashPage extends StatelessWidget {
@@ -8,18 +10,43 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Splash'),
-      ),
-      body: Column(children: [
-        DeliveryButton(
-          onPressed: () {},
-          label: Env.backendBaseUrl,
-          height: 100,
-          width: 150,
+      body: ColoredBox(
+        color: ColorsApp.instance.splashBackground,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                width: context.screenWith,
+                child: Image.asset(
+                  AppConstants.imagesLanche,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AppConstants.imagesLogo,
+                  ),
+                  const SizedBox(
+                    height: 80,
+                  ),
+                  DeliveryButton(
+                    width: context.percentWidth(.6),
+                    height: 35,
+                    label: 'Acessar',
+                    onPressed: () => Navigator.of(context)
+                        .pushReplacementNamed(AppConstants.routeHomePage),
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
-        TextFormField(),
-      ]),
+      ),
     );
   }
 }

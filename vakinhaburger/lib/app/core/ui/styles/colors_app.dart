@@ -10,6 +10,7 @@ class ColorsApp {
 
   Color get primary => const Color(0xFF007D21);
   Color get secondary => const Color(0xFFF88B0C);
+  Color get splashBackground => const Color(0xFF140E0E);
 }
 
 extension ColorsAppExtensions on BuildContext {

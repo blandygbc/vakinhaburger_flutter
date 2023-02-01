@@ -15,8 +15,8 @@ class ThemeConfig {
     appBarTheme: const AppBarTheme(
       titleTextStyle: TextStyle(color: Colors.black),
       backgroundColor: Colors.white,
-      elevation: 0,
       centerTitle: true,
+      elevation: 0,
       iconTheme: IconThemeData(color: Colors.black),
     ),
     primaryColor: ColorsApp.instance.primary,

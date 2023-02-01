@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vakinhaburger/app/core/provider/application_binding.dart';
 import 'package:vakinhaburger/app/core/theme/theme_config.dart';
 import 'package:vakinhaburger/app/core/routes/routes.dart';
 
@@ -7,10 +8,12 @@ class VakinhaBurgerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'VakinhaBurger',
-      theme: ThemeConfig.theme,
-      routes: appRoutes,
+    return ApplicationBinding(
+      child: MaterialApp(
+        title: 'VakinhaBurger',
+        theme: ThemeConfig.theme,
+        routes: appRoutes,
+      ),
     );
   }
 }
