@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vakinhaburger/app/dto/order_product_dto.dart';
 import 'package:vakinhaburger/app/pages/home/home_state.dart';
 import 'package:vakinhaburger/app/repositories/products/products_repository.dart';
 
@@ -22,5 +23,21 @@ class HomeController extends Cubit<HomeState> {
         errorMessage: 'Erro ao buscar produtos',
       ));
     }
+  }
+
+  void addOrUpdateBag(OrderProductDto orderProduct) {
+    final shoppingBag = [...state.shoppingBag];
+    final orderIndex = shoppingBag
+        .indexWhere((bagProduct) => bagProduct.product == orderProduct.product);
+    if (orderIndex > -1) {
+      if (orderProduct.amount == 0) {
+        shoppingBag.removeAt(orderIndex);
+      } else {
+        shoppingBag[orderIndex] = orderProduct;
+      }
+    } else {
+      shoppingBag.add(orderProduct);
+    }
+    emit(state.copyWith(shoppingBag: shoppingBag));
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vakinhaburger/app/core/constants/app_constants.dart';
+import 'package:vakinhaburger/app/core/constants/app_assets.dart';
 
 class DeliveryAppbar extends AppBar {
   DeliveryAppbar({
@@ -8,7 +8,7 @@ class DeliveryAppbar extends AppBar {
   }) : super(
           elevation: elevation,
           title: Image.asset(
-            AppConstants.imagesLogo,
+            AppAssets.imagesLogo,
             width: 80,
           ),
         );

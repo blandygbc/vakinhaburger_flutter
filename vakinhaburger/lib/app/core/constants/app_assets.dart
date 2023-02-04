@@ -1,9 +1,5 @@
-class AppConstants {
-  AppConstants._();
-
-  // Routes names
-  static const routeSplashPage = "/";
-  static const routeHomePage = "/home";
+class AppAssets {
+  AppAssets._();
 
   //Assets
   static const String imagesLanche = 'assets/images/lanche.png';

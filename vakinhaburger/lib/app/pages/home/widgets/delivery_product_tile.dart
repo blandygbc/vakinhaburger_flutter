@@ -1,64 +1,85 @@
 import 'package:flutter/material.dart';
-import 'package:vakinhaburger/app/core/constants/app_constants.dart';
+import 'package:provider/provider.dart';
+import 'package:vakinhaburger/app/core/constants/app_assets.dart';
 import 'package:vakinhaburger/app/core/extensions/formatter_extension.dart';
+import 'package:vakinhaburger/app/core/routes/routes_names.dart';
 import 'package:vakinhaburger/app/core/ui/styles/colors_app.dart';
 import 'package:vakinhaburger/app/core/ui/styles/text_styles.dart';
+import 'package:vakinhaburger/app/dto/order_product_dto.dart';
 import 'package:vakinhaburger/app/models/product_model.dart';
+import 'package:vakinhaburger/app/pages/home/home_controller.dart';
 
 class DeliveryProductTile extends StatelessWidget {
   final ProductModel product;
-  const DeliveryProductTile({Key? key, required this.product})
-      : super(key: key);
+  final OrderProductDto? orderProductDto;
+  const DeliveryProductTile({
+    super.key,
+    required this.product,
+    required this.orderProductDto,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    product.name,
-                    style:
-                        context.textStyles.textExtraBold.copyWith(fontSize: 16),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    product.description,
-                    style: context.textStyles.textRegular.copyWith(
-                      fontSize: 12,
+    return InkWell(
+      onTap: () async {
+        final controller = context.read<HomeController>();
+        final orderProductResult = await Navigator.of(context)
+            .pushNamed(RoutesNames.productDetailPage, arguments: {
+          'product': product,
+          'order': orderProductDto,
+        });
+        if (orderProductResult != null) {
+          controller.addOrUpdateBag(orderProductResult as OrderProductDto);
+        }
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      product.name,
+                      style: context.textStyles.textExtraBold
+                          .copyWith(fontSize: 16),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    product.price.currencyPTBR,
-                    style: context.textStyles.textMedium.copyWith(
-                      fontSize: 12,
-                      color: context.colors.secondary,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      product.description,
+                      style: context.textStyles.textRegular.copyWith(
+                        fontSize: 12,
+                      ),
                     ),
-                    maxLines: 2,
                   ),
-                ),
-              ],
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      product.price.currencyPTBR,
+                      style: context.textStyles.textMedium.copyWith(
+                        fontSize: 12,
+                        color: context.colors.secondary,
+                      ),
+                      maxLines: 2,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          FadeInImage.assetNetwork(
-            placeholder: AppConstants.imagesLoading,
-            image: product.image,
-            width: 100,
-            height: 100,
-            fit: BoxFit.contain,
-          )
-        ],
+            FadeInImage.assetNetwork(
+              placeholder: AppAssets.imagesLoading,
+              image: product.image,
+              width: 100,
+              height: 100,
+              fit: BoxFit.contain,
+            )
+          ],
+        ),
       ),
     );
   }

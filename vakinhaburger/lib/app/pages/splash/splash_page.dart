@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vakinhaburger/app/core/constants/app_constants.dart';
+import 'package:vakinhaburger/app/core/constants/app_assets.dart';
+import 'package:vakinhaburger/app/core/routes/routes_names.dart';
 import 'package:vakinhaburger/app/core/ui/helpers/size_extensions.dart';
 import 'package:vakinhaburger/app/core/ui/styles/colors_app.dart';
 import 'package:vakinhaburger/app/core/ui/widgets/delivery_button.dart';
@@ -19,7 +20,7 @@ class SplashPage extends StatelessWidget {
               child: SizedBox(
                 width: context.screenWith,
                 child: Image.asset(
-                  AppConstants.imagesLanche,
+                  AppAssets.imagesLanche,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -29,7 +30,7 @@ class SplashPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    AppConstants.imagesLogo,
+                    AppAssets.imagesLogo,
                   ),
                   const SizedBox(
                     height: 80,
@@ -39,7 +40,7 @@ class SplashPage extends StatelessWidget {
                     height: 35,
                     label: 'Acessar',
                     onPressed: () => Navigator.of(context)
-                        .pushReplacementNamed(AppConstants.routeHomePage),
+                        .pushReplacementNamed(RoutesNames.homePage),
                   ),
                 ],
               ),
