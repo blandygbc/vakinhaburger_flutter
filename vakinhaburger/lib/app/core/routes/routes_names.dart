@@ -5,4 +5,5 @@ class RoutesNames {
   static const productDetailPage = "/product-detail";
   static const loginPage = "/login";
   static const registerPage = "/register";
+  static const orderPage = "/order";
 }
