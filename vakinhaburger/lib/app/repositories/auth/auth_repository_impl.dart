@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:vakinhaburger/app/core/constants/api_endpoints.dart';
 import 'package:vakinhaburger/app/core/exceptions/repository_exception.dart';
 import 'package:vakinhaburger/app/core/exceptions/unauthorized_exception.dart';
 import 'package:vakinhaburger/app/core/rest_client/custom_dio.dart';
@@ -16,7 +17,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<AuthModel> login(String email, String password) async {
     try {
-      final result = await dio.unauth().post('/auth', data: {
+      final result = await dio.unauth().post(ApiEndpoints.auth, data: {
         'email': email,
         'password': password,
       });
@@ -34,7 +35,7 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<void> register(String name, String email, String password) async {
     try {
-      await dio.unauth().post('/users', data: {
+      await dio.unauth().post(ApiEndpoints.users, data: {
         'name': name,
         'email': email,
         'password': password,

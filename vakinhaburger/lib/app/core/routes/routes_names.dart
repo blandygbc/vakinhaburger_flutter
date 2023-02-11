@@ -6,4 +6,5 @@ class RoutesNames {
   static const loginPage = "/login";
   static const registerPage = "/register";
   static const orderPage = "/order";
+  static const orderCompleted = 'order/completed';
 }
